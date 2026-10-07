@@ -101,7 +101,7 @@ function RequestPage() {
   async function requestVolunteer(m: Match) {
     if (!saved) return;
     const { error } = await supabase.from("support_requests").update({ status: "matched", volunteer_id: m.volunteer.id }).eq("id", saved.id);
-    if (error) return toast.error("Could not send request.");
+    if (error) { toast.error("Could not send request."); return; }
     setRequested(m.volunteer.id);
     qc.invalidateQueries({ queryKey: ["requests"] });
     toast.success(`Request sent to ${m.volunteer.name}. They'll confirm from their dashboard.`);

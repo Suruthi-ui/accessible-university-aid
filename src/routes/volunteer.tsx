@@ -33,7 +33,7 @@ function VolunteerPage() {
 
   async function updateRequest(r: SupportRequest, patch: Partial<SupportRequest>, msg: string) {
     const { error } = await supabase.from("support_requests").update(patch).eq("id", r.id);
-    if (error) return toast.error("Update failed.");
+    if (error) { toast.error("Update failed."); return; }
     toast.success(msg);
     refresh();
   }
@@ -43,7 +43,7 @@ function VolunteerPage() {
     const f = new FormData(e.currentTarget);
     const categories = f.getAll("categories").map(String);
     const days = f.getAll("days").map(String);
-    if (!categories.length || !days.length) return toast.error("Pick at least one category and one day.");
+    if (!categories.length || !days.length) { toast.error("Pick at least one category and one day."); return; }
     const { data, error } = await supabase
       .from("volunteers")
       .insert({
@@ -58,7 +58,7 @@ function VolunteerPage() {
       })
       .select()
       .single();
-    if (error || !data) return toast.error("Could not register.");
+    if (error || !data) { toast.error("Could not register."); return; }
     await qc.invalidateQueries({ queryKey: ["volunteers"] });
     setSelectedId(data.id);
     setJoinOpen(false);

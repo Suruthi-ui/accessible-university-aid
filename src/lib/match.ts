@@ -39,7 +39,7 @@ export type Match = { volunteer: Volunteer; score: number; breakdown: MatchBreak
 
 export function dayOf(date: string) {
   const d = new Date(date + "T12:00:00");
-  return DAYS[d.getDay()];
+  return DAYS[d.getDay()] ?? "Mon";
 }
 
 export function scoreVolunteer(

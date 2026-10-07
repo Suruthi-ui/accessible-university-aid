@@ -67,5 +67,5 @@ export function StatusBadge({ status }: { status: string }) {
     accepted: "bg-primary/15 text-primary",
     completed: "bg-secondary text-muted-foreground",
   };
-  return <span className={cn("rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize", cls[status] ?? cls.open)}>{status}</span>;
+  return <span className={cn("rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize", cls[status] ?? cls["open"])}>{status}</span>;
 }
