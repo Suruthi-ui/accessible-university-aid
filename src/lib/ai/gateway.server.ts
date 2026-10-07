@@ -10,7 +10,7 @@ const BASE_URL = "https://ai.gateway.lovable.dev/v1";
 export const MODEL = "openai/gpt-6-astra";
 
 function getKey() {
-  const key = process.env.LOVABLE_API_KEY;
+  const key = process.env["LOVABLE_API_KEY"];
   if (!key) throw new Error("AI is not configured (missing LOVABLE_API_KEY).");
   return key;
 }
