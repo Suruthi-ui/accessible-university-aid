@@ -14,7 +14,131 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      students: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          program: string
+          student_code: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          program?: string
+          student_code: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          program?: string
+          student_code?: string
+        }
+        Relationships: []
+      }
+      support_requests: {
+        Row: {
+          category: string
+          created_at: string
+          details: string
+          id: string
+          location: string
+          request_date: string
+          request_time: string
+          status: string
+          student_code: string
+          student_name: string
+          support_required: string
+          urgency: string
+          volunteer_id: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          details?: string
+          id?: string
+          location: string
+          request_date: string
+          request_time: string
+          status?: string
+          student_code: string
+          student_name: string
+          support_required: string
+          urgency?: string
+          volunteer_id?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          details?: string
+          id?: string
+          location?: string
+          request_date?: string
+          request_time?: string
+          status?: string
+          student_code?: string
+          student_name?: string
+          support_required?: string
+          urgency?: string
+          volunteer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_requests_volunteer_id_fkey"
+            columns: ["volunteer_id"]
+            isOneToOne: false
+            referencedRelation: "volunteers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      volunteers: {
+        Row: {
+          availability_days: string[]
+          availability_label: string
+          bio: string
+          categories: string[]
+          created_at: string
+          experience_years: number
+          id: string
+          location: string
+          name: string
+          rating: number
+          sessions: number
+          skills: string[]
+        }
+        Insert: {
+          availability_days?: string[]
+          availability_label?: string
+          bio?: string
+          categories?: string[]
+          created_at?: string
+          experience_years?: number
+          id?: string
+          location?: string
+          name: string
+          rating?: number
+          sessions?: number
+          skills?: string[]
+        }
+        Update: {
+          availability_days?: string[]
+          availability_label?: string
+          bio?: string
+          categories?: string[]
+          created_at?: string
+          experience_years?: number
+          id?: string
+          location?: string
+          name?: string
+          rating?: number
+          sessions?: number
+          skills?: string[]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
